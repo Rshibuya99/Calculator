@@ -1,3 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("lmao");
+    let numX = nan;
+    let numY = nan;
+
+    
 })
