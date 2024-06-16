@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let numX = nan;
-    let numY = nan;
+    let numX = NaN;
+    let numY = NaN;
 
-    
+
 })

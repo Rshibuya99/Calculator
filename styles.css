@@ -1,0 +1,23 @@
+.container-main {
+    width: 450px;
+    height: 550px;
+    margin: 100px auto;
+    border: solid 2px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.display {
+    border: solid black 1px;
+    width: 80%;
+    height: 15%;
+    text-align: right;
+}
+
+.number-text {
+    font-size: 60px;
+    font-variant-numeric: tabular-nums;
+    font-variant: diagonal-fractions;
+}
