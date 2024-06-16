@@ -34,3 +34,12 @@ function operate(x, y, operator) {
         return NaN
     }
 }
+
+function evaluateNum(n) {
+    if (parseInt(n) == false) {
+        return NaN
+    }
+    else {
+        return parseInt(n)
+    }
+}
