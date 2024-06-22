@@ -19,14 +19,16 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     // variables
-    let numX = NaN;
-    let numY = NaN;
-    let operator = NaN;
+    let numX        = NaN;
+    let numY        = NaN;
+    let operator    = NaN;
 
-    const DISPLAY = document.querySelector('.display');
-    const MAIN_CONTAINER = document.querySelector('.container-main');
-    const calculate = document.querySelector('#calculate');
+    const DISPLAY           = document.querySelector('.display');
+    const MAIN_CONTAINER    = document.querySelector('.container-main');
+    const calculate         = document.querySelector('#calculate');
+    const dot               = document.querySelector('#dot')
 
+    // calculator board
     MAIN_CONTAINER.addEventListener('click', function(e) {
         
         // display numbers
@@ -37,7 +39,18 @@ document.addEventListener("DOMContentLoaded", function() {
             else {
                 DISPLAY.textContent = `${DISPLAY.textContent}${e.target.textContent}`;
             }
-            storeNum();
+            // storeNum();
+        }
+
+        if (e.target.classList.contains("dot")) {
+            // alert('lmao')
+            numDots = DISPLAY.textContent
+                            .split("")
+                            .filter(x => x==".")
+                            .length
+            if (numDots == 0) {
+                DISPLAY.textContent = `${DISPLAY.textContent}${e.target.textContent}`;
+            }
         }
 
         // reset display and variables
@@ -54,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
     calculate.addEventListener('click', function() {
         alert(`${DISPLAY.textContent}`);
     })
+
+
 
 
 })
