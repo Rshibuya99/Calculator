@@ -12,7 +12,7 @@
 .display {
     border: solid black 1px;
     width: 80%;
-    height: 15%;
+    /* height: 15%; */
     text-align: right;
 }
 
@@ -21,3 +21,19 @@
     font-variant-numeric: tabular-nums;
     font-variant: diagonal-fractions;
 }
+
+.row {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    /* border: solid red 1px; */
+}
+
+.row button {
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-shrink: 0;
+    font-size: 40px;
+    font-family: lato;
+}
+
