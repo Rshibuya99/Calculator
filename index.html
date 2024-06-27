@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    <script src="helper.js"></script>
+    <script src="script.js" type="module"></script>
+    <script src="helper.js" type="module"></script>
     <title>Calculator</title>
 </head>
 <body>
     <div class="container-main">
-        <div class="display number-text">0</div>
+        <div class="display number-text" maxlength="3">0</div>
         <div class="row">
             <button class="clear">AC</button>
         </div>
@@ -18,25 +18,25 @@
             <button class="numeric">7</button>
             <button class="numeric">8</button>
             <button class="numeric">9</button>
-            <button>÷</button>
+            <button class="operator">÷</button>
         </div>
         <div class="row">
             <button class="numeric">4</button>
             <button class="numeric">5</button>
             <button class="numeric">6</button>
-            <button>x</button>
+            <button class="operator">x</button>
         </div>
         <div class="row">
             <button class="numeric">1</button>
             <button class="numeric">2</button>
             <button class="numeric">3</button>
-            <button>-</button>
+            <button class="operator">-</button>
         </div>
         <div class="row">
             <button class="numeric">0</button>
             <button class="dot">.</button>
             <button id="calculate">=</button>
-            <button>+</button>
+            <button class="operator">+</button>
         </div>
     </div>
 </body>

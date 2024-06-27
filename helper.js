@@ -21,10 +21,10 @@ function operate(x, y, operator) {
     else if (operator == "-") {
         return operateSubtract(x, y)
     }
-    else if (operator == "*") {
+    else if (operator == "x" || operator == "*") {
         return operateMultiply(x, y)
     }
-    else if (operator == "/") {
+    else if (operator == "/" || operator == "÷") {
         if (y == 0) {
             throw new RangeError("Cannot divide by zero")
         }
@@ -43,3 +43,6 @@ function evaluateNum(n) {
         return parseInt(n)
     }
 }
+
+
+export {operate};

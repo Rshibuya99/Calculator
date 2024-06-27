@@ -13,7 +13,8 @@
 
 
 */
-
+import {operate} from './helper.js';
+// const {operate, operateAdd, operateDivide, operateMultiply, operateSubtract, evaluateNum} = require('./helper.');
 
 
 
@@ -22,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let numX        = NaN;
     let numY        = NaN;
     let operator    = NaN;
+    let MAX_LEN     = 10;
+    let replaceDisplay = false;
 
     const DISPLAY           = document.querySelector('.display');
     const MAIN_CONTAINER    = document.querySelector('.container-main');
@@ -33,13 +36,18 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // display numbers
         if (e.target.classList.contains("numeric")) {
-            if (DISPLAY.textContent == '0') {
+            if (replaceDisplay == true) {
+                DISPLAY.textContent = `${e.target.textContent}`;
+                replaceDisplay == false;
+            } else if
+             (DISPLAY.textContent == '0') {
                 DISPLAY.textContent = `${e.target.textContent}`;
             }
             else {
-                DISPLAY.textContent = `${DISPLAY.textContent}${e.target.textContent}`;
+                if (DISPLAY.textContent.length < MAX_LEN) {
+                    DISPLAY.textContent = `${DISPLAY.textContent}${e.target.textContent}`;
+                }
             }
-            // storeNum();
         }
 
         if (e.target.classList.contains("dot")) {
@@ -61,11 +69,27 @@ document.addEventListener("DOMContentLoaded", function() {
             DISPLAY.textContent = '0';
         }
 
+        if (e.target.classList.contains("operator")) {
+            numX = parseFloat(DISPLAY.textContent);
+            operator = e.target.textContent;
+            replaceDisplay      = true;
+        }
+
     })
 
     // calculate
+
+
+
+
     calculate.addEventListener('click', function() {
-        alert(`${DISPLAY.textContent}`);
+        numY = parseFloat(DISPLAY.textContent);
+        let result = operate(numX, numY, operator);
+        numX                = NaN;
+        numY                = NaN;
+        operator            = NaN;
+        DISPLAY.textContent = result;
+
     })
 
 

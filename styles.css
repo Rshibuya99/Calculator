@@ -17,6 +17,7 @@
     overflow: hidden;
     text-overflow: cut;
     /* text-overflow: ellipsis; */
+    /* maxlength: 3; */
 }
 
 .number-text {
