@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let numY        = NaN;
     let operator    = NaN;
     let MAX_LEN     = 10;
-    let replaceDisplay = false;
+    let replaceDisplay = true;
 
     const DISPLAY           = document.querySelector('.display');
     const MAIN_CONTAINER    = document.querySelector('.container-main');
@@ -35,13 +35,12 @@ document.addEventListener("DOMContentLoaded", function() {
     MAIN_CONTAINER.addEventListener('click', function(e) {
         
         // display numbers
+        // TODO
+        // fix replacing display properly
         if (e.target.classList.contains("numeric")) {
             if (replaceDisplay == true) {
                 DISPLAY.textContent = `${e.target.textContent}`;
-                replaceDisplay == false;
-            } else if
-             (DISPLAY.textContent == '0') {
-                DISPLAY.textContent = `${e.target.textContent}`;
+                replaceDisplay = false;
             }
             else {
                 if (DISPLAY.textContent.length < MAX_LEN) {
@@ -88,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
         numX                = NaN;
         numY                = NaN;
         operator            = NaN;
+        replaceDisplay      = true;
         DISPLAY.textContent = result;
 
     })
