@@ -1,20 +1,3 @@
-/*
-1. display
-2. store
-    num 1
-        after press numeric button
-        after display calulation output / press equal sign
-    num 2
-        after press operators
-    operator
-        after press operators
-3. calculate
-4. display
-
-
-*/
-import {operate} from './helper.js';
-
 document.addEventListener("DOMContentLoaded", function() {
     // variables
     let numX        = NaN;
@@ -57,7 +40,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // reset display and variables
         if (e.target.classList.contains("clear")) {
-            returnDefault(numX, numY, operator)
+
+            numX = NaN
+            numY = NaN
+            operator = NaN
+
             replaceDisplay = true;
             DISPLAY.textContent = '0';
         }
@@ -71,10 +58,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.target.classList.contains("calculate")) {
             numY = parseFloat(DISPLAY.textContent);
             let result = operate(numX, numY, operator);
-            returnDefault(numX, numY, operator);
+
+            numX = NaN
+            numY = NaN
+            operator = NaN
+            
             replaceDisplay = true;
-            // result = truncateNum(result)
-            // truncateNum(result)
+            result = truncateNum(result)
             DISPLAY.textContent = result;
 
         }
@@ -82,17 +72,11 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 
-function returnDefault(num1, num2, operator) {
-    num1 = NaN;
-    num2 = NaN;
-    operator = NaN;
-}
-
-
 function truncateNum(num, max_len) {
-    return parseFloat(Math.round(num + 'e' + max_len) + 'e-' + max_len);
-    let newNum = num.toString().substring(0, 10);
+    let newNum = num.toPrecision(3)
+    newNum = newNum.toString().substring(0, max_len);
     return newNum
+   
 }
 
 
@@ -120,6 +104,7 @@ function operate(x, y, operator) {
         return NaN
     }
 }
+
 
 function evaluateNum(n) {
     if (parseFloat(n) == false) {
