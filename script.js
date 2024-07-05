@@ -14,9 +14,6 @@
 
 */
 import {operate} from './helper.js';
-// const {operate, operateAdd, operateDivide, operateMultiply, operateSubtract, evaluateNum} = require('./helper.');
-
-
 
 document.addEventListener("DOMContentLoaded", function() {
     // variables
@@ -28,16 +25,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const DISPLAY           = document.querySelector('.display');
     const MAIN_CONTAINER    = document.querySelector('.container-main');
-    const calculate         = document.querySelector('#calculate');
-    const dot               = document.querySelector('#dot')
 
     // calculator board
     MAIN_CONTAINER.addEventListener('click', function(e) {
         
         // display numbers
-        // TODO
-        // fix replacing display properly
         if (e.target.classList.contains("numeric")) {
+            if (DISPLAY.textContent == '0') {
+                replaceDisplay = true;
+            }
             if (replaceDisplay == true) {
                 DISPLAY.textContent = `${e.target.textContent}`;
                 replaceDisplay = false;
@@ -50,8 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (e.target.classList.contains("dot")) {
-            // alert('lmao')
-            numDots = DISPLAY.textContent
+            let numDots = DISPLAY.textContent
                             .split("")
                             .filter(x => x==".")
                             .length
@@ -62,9 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // reset display and variables
         if (e.target.classList.contains("clear")) {
-            numX                = NaN;
-            numY                = NaN;
-            operator            = NaN;
+            returnDefault(numX, numY, operator)
+            replaceDisplay = true;
             DISPLAY.textContent = '0';
         }
 
@@ -74,25 +68,64 @@ document.addEventListener("DOMContentLoaded", function() {
             replaceDisplay      = true;
         }
 
+        if (e.target.classList.contains("calculate")) {
+            numY = parseFloat(DISPLAY.textContent);
+            let result = operate(numX, numY, operator);
+            returnDefault(numX, numY, operator);
+            replaceDisplay = true;
+            // result = truncateNum(result)
+            // truncateNum(result)
+            DISPLAY.textContent = result;
+
+        }
     })
-
-    // calculate
-
-
-
-
-    calculate.addEventListener('click', function() {
-        numY = parseFloat(DISPLAY.textContent);
-        let result = operate(numX, numY, operator);
-        numX                = NaN;
-        numY                = NaN;
-        operator            = NaN;
-        replaceDisplay      = true;
-        DISPLAY.textContent = result;
-
-    })
-
-
-
-
 })
+
+
+function returnDefault(num1, num2, operator) {
+    num1 = NaN;
+    num2 = NaN;
+    operator = NaN;
+}
+
+
+function truncateNum(num, max_len) {
+    return parseFloat(Math.round(num + 'e' + max_len) + 'e-' + max_len);
+    let newNum = num.toString().substring(0, 10);
+    return newNum
+}
+
+
+function operate(x, y, operator) {
+    if (evaluateNum(x) == false || evaluateNum(y) == false) {
+        return NaN
+    }
+
+    if (operator == "+") {
+        return x + y
+    }
+    else if (operator == "-") {
+        return x - y
+    }
+    else if (operator == "x" || operator == "*") {
+        return x * y
+    }
+    else if (operator == "/" || operator == "÷") {
+        if (y == 0) {
+            return NaN
+        }
+        return x / y
+    }
+    else {
+        return NaN
+    }
+}
+
+function evaluateNum(n) {
+    if (parseFloat(n) == false) {
+        return NaN
+    }
+    else {
+        return parseFloat(n)
+    }
+}

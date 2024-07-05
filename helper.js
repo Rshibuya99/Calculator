@@ -15,20 +15,24 @@ function operateDivide(x, y) {
 }
 
 function operate(x, y, operator) {
+    if (evaluateNum(x) == false || evaluateNum(y) == false) {
+        return NaN
+    }
+
     if (operator == "+") {
-        return operateAdd(x, y)
+        return x + y
     }
     else if (operator == "-") {
-        return operateSubtract(x, y)
+        return x - y
     }
     else if (operator == "x" || operator == "*") {
-        return operateMultiply(x, y)
+        return x * y
     }
     else if (operator == "/" || operator == "÷") {
         if (y == 0) {
-            throw new RangeError("Cannot divide by zero")
+            return NaN
         }
-        return operateDivide(x, y)
+        return x / y
     }
     else {
         return NaN
@@ -36,13 +40,12 @@ function operate(x, y, operator) {
 }
 
 function evaluateNum(n) {
-    if (parseInt(n) == false) {
+    if (parseFloat(n) == false) {
         return NaN
     }
     else {
-        return parseInt(n)
+        return parseFloat(n)
     }
 }
-
 
 export {operate};
