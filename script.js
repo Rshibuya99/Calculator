@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let numX        = NaN;
     let numY        = NaN;
     let operator    = NaN;
-    let MAX_LEN     = 10;
+
     let replaceDisplay = true;
 
+    const MAX_LEN           = 10;
     const DISPLAY           = document.querySelector('.display');
     const MAIN_CONTAINER    = document.querySelector('.container-main');
 
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
             operator = NaN
             
             replaceDisplay = true;
-            result = truncateNum(result)
+            result = truncateNum(result, MAX_LEN)
             DISPLAY.textContent = result;
 
         }
